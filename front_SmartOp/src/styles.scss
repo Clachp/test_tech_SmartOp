@@ -1,1 +1,15 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+    font-family: Inter;
+}
+
+.feature-container {
+    align-items: center;
+    background-color: #f0f5f8;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    height: 60%;
+    justify-content: center;
+    padding: 70px 120px;
+    position: relative;
+}

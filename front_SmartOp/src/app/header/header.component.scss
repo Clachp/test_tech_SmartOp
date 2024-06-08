@@ -1,0 +1,22 @@
+h1 {
+    align-items: center;
+    background-color: #fff;
+    border-bottom: 1px solid rgba(29, 29, 30, .12);
+    box-shadow: 0 3px 8px -1px rgba(0, 0, 0, .1);
+    display: flex;
+    flex-direction: row;
+    font-size: 14px;
+    grid-template-columns: auto -webkit-max-content -webkit-max-content -webkit-max-content;
+    grid-template-columns: auto max-content max-content max-content;
+    grid-template-rows: auto;
+    height: 72px;
+    justify-content: start;
+    padding: 0 120px;
+    position: -webkit-sticky;
+    position: sticky;
+    text-align: end;
+    top: 0;
+    transition: .2s;
+    width: 100%;
+    z-index: 1001;
+}
