@@ -1,0 +1,11 @@
+<div class="feature-container">
+    <p>{{ surgeon.name }}</p>
+    <p>Spécialité : {{ surgeon.speciality }} </p>
+    <div>
+        <button (click)="onSnap(surgeon.snap)" [ngClass]="{'click-button' : isClicked}">{{ surgeon.buttonTitle }}</button>
+        <span> snaps = {{ surgeon.snap }} </span>
+    </div>
+    @if (intervention.nurse2) {
+        <p> nurse2 = {{ intervention.nurse2 }}</p>
+    }
+</div>

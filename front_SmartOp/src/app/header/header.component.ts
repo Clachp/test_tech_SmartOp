@@ -13,6 +13,6 @@ export class HeaderComponent {
 
   ngOnInit(): void {
     this.title = "Smart'Op";
-    this.logo = "./smartop-logo.svg";
+    this.logo = "https://smartop.io/smartop-logo.svg";
   }
 }

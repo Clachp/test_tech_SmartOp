@@ -1,2 +1,4 @@
 <app-header></app-header>
-<app-chir-profile></app-chir-profile>
+@for (surgeon of surgeonTab; track surgeon.id) {
+    <app-surgeon-profile [surgeon]="surgeon" [intervention]="oneIntervention"/>
+}
