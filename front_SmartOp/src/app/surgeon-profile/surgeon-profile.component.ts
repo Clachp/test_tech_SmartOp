@@ -14,11 +14,29 @@ export class SurgeonProfileComponent implements OnInit{
   @Input() surgeon!: Surgeon;
   @Input() intervention!: Intervention;
   isClicked!: boolean;
+  oneIntervention!: Intervention;
+  secondIntervention!: Intervention;
   
-
   ngOnInit(): void {
     this.isClicked = false;
-    }
+    this.oneIntervention = new Intervention(
+      1,
+      "colposcopie",
+      "gynécologie",
+      "Jean",
+      "Marinette",
+      4
+    )
+    this.secondIntervention = new Intervention(
+      2,
+      "radioscopie",
+      "radiologie",
+      "Charlie",
+      "Yoyo",
+      8
+    )
+    this.oneIntervention.setNurse2("Josianne");    
+  }
   
   onSnap(snapInit: number):void {
     this.surgeon.onClickSnap(snapInit);
@@ -28,6 +46,5 @@ export class SurgeonProfileComponent implements OnInit{
   setNurse(nurse: string) {
     this.intervention.setNurse2(nurse);
   }
-    
-
+  
 }
