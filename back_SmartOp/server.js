@@ -1,7 +1,10 @@
 const http = require('http');
 const app = require('./app');
+require('dotenv').config();
 
-app.set('port', process.env.PORT || 3000);
+const port = process.env.PORT || 3000
+
+app.set('port', port);
 
 const errorHandler = error => {
     if (error.syscall !== 'listen') {
@@ -9,10 +12,12 @@ const errorHandler = error => {
     }
 }
 
-const server = http.createServer((req, res) => {
-    res.end('Voilà la réponse du serveur !');
+const server = http.createServer(app);
+
+server.on('listening', () => {
+  const address = server.address();
+  const bind = typeof address === 'string' ? 'pipe ' + address : 'port ' + port;
+  console.log('Server listening on ' + bind);
 });
 
 server.listen(process.env.PORT || 3000);
-
-console.log("server listening on port ", app.PORT);
