@@ -7,53 +7,48 @@ const SeedTable = async (Model, dataName) => {
     const count = await Model.countDocuments();
     if (count > 0) {
       console.log(`Table ${dataName} already seeded`);
-      await Model.deleteMany(data);
-      console.log(`Table ${dataName} emptied`);
       return;
     }
     await Model.insertMany(data);
     console.log(`Table ${dataName} successfully seeded`);
   }
 
-const addSurgeon_id = async () => {
+const SetReferences = async () => {
 
-  // ajouter un champ surgeon_id à la collection interventions
-  
-  // pour chaque intervention, le champ surgeon_id prend _id de la coll surgeon 
-  // si surgeon.name = intervention.surgeon et surgeon.speciality = intervention.speciality
-  // Intervention.InsertMany
+  const interventions = await Intervention.find({surgeon: "GEODE"});
+  for (const intervention of interventions) {
+      const surgeon = await Surgeon.findOne({
+          name: intervention.surgeon,
+          speciality: intervention.speciality
+      });
 
-
-  // Joindre les interventions de chaque surgeon par son id
-  // Surgeon.aggregate([
-  //   {
-  //     $lookup: {
-  //       from: "interventions",        // Collection à joindre
-  //       localField: "_id",        // Champ dans la collection surgeon
-  //       foreignField: "user_id",  // Champ dans la collection interventions
-  //       as: "interventions"           // Alias pour les résultats de la jointure
-  //     }
-  //   }
-  // ]);
-
-  // OU checker l'utilisation des pipelines pour des requetes 
+      if (surgeon) {
+          !intervention.surgeon_id ? 
+          intervention.surgeon_id = surgeon._id : 
+          console.log("inter sur id = ", intervention.surgeon_id);
+          await intervention.save();
+          // !surgeon.interverventions.find(intervention._id) ? BUGG find not a function
+          // surgeon.interverventions.push(intervention._id) :
+          // console.log("found :", surgeon.interverventions.find(intervention._id));
+          // await surgeon.save();
+      }
+  }
 }
 
 mongoose.connect(process.env.DB_ADDRESS, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
-.then(() => console.log('Connexion à MongoDB réussie !'))
-.catch(() => console.log('Connexion à MongoDB échouée !'));
-
 
 mongoose.connection.once('open', async () => {
-    console.log('Connected to MongoDB');
-    
-    //await SeedTable(Surgeon, 'surgeons');
-    await SeedTable(Intervention, 'interventions');
-    mongoose.connection.close();
-  });
+  await SeedTable(Surgeon, 'surgeons');
+  await SeedTable(Intervention, 'interventions');
+  await SetReferences();
+  const existS = await Surgeon.exists();
+  console.log("surgeon exist = ", existS);
+  const existI = await Intervention.exists();
+  console.log("intervention exist = ", existI);
+  console.log('Database configured');
+  mongoose.connection.close();
+});
 
-  // fonction pour ajouter surgeon_id = surgeon._id a chaque intervention ou surgeon= surgeon.name
-  // et speciality = surgeon.speciality

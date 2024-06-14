@@ -1,6 +1,30 @@
 const express = require('express');
 const { Surgeon, Intervention } = require('./Models');
 
+const GetFavoriteIntem = (item) => {
+
+}
+
+/**
+ * Pour chaque surgeon
+ * {
+ *  surgeon:
+ * speciality:
+ * nr of interventions:
+ * favortie nurse
+ * favorite anesth
+ * favorite intervnetion title}
+ */
+
+exports.getSurgeonsIntervention = async (id) => {
+  const surgeon = await Surgeon.findById(id);
+  console.log("get surgeon: ", surgeon)
+  // for (intervention_id of surgeon.interventions) {
+  //   const res = Intervention.findById(intervention_id)
+  //   console.log("res : ", res)
+  // }
+}
+
 const getSurgeonById = (req, res) => {
     Surgeon.findOne({
         _id: req.params.id
@@ -32,5 +56,3 @@ const getSurgeonByName = (req, res) => {
         }
       );
 }
-
-module.exports = controller;
