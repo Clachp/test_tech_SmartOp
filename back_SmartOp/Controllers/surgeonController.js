@@ -1,5 +1,5 @@
 const express = require('express');
-const { Surgeon, Intervention } = require('./Models');
+const { Surgeon, Intervention } = require('../Models');
 
 const GetFavoriteIntem = (item) => {
 
@@ -23,6 +23,21 @@ exports.getSurgeonsIntervention = async (id) => {
   //   const res = Intervention.findById(intervention_id)
   //   console.log("res : ", res)
   // }
+}
+
+exports.getAllSurgeons = async () => {
+  Surgeon.find({})
+  .then(
+    (Surgeon) => {
+      res.status(200).json(Surgeon);
+    })
+  .catch(
+    (error) => {
+      res.status(404).json({
+        error: error
+      });
+    }
+  );
 }
 
 const getSurgeonById = (req, res) => {

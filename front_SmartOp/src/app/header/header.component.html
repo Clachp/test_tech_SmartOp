@@ -1,5 +1,9 @@
 <div class="section master-first-content spartan ls-half">
     <div class="menu-logo">
-        <a href="/"><img [src]="logo" alt="logo"></a>
-        </div>
+        <a routerLink="" routerLinkActive="active"><img [src]="logo" alt="logo"></a>
+    </div>
+    <div class="search-button">
+        <input type="text" placeholder="Search a surgeon..." class="search-input">
+        <button (click)="onClickSearch()" [ngClass]="{'click-button' : isClicked}">search</button>
+    </div>
 </div>

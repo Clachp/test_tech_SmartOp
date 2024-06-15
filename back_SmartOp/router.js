@@ -1,10 +1,9 @@
 const express = require('express');
 const router = express.Router();
+const { SurgeonController} = require('./Controllers')
 
 
-router.get('/', (req, res) => {
-
-})
+router.get('/', SurgeonController.getAllSurgeons);
 
 router.get('/{id}', (req, res) => {
 

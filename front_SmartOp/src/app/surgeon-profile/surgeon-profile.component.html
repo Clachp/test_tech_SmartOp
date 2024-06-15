@@ -1,11 +1,19 @@
 <div class="feature-container">
-    <p>{{ surgeon.name }}</p>
+    <h2>{{ surgeon.name }}</h2>
     <p>Spécialité : {{ surgeon.speciality }} </p>
+    <button (click)="onView()">VIEW</button>
     <div>
-        <button (click)="onSnap(surgeon.snap)" [ngClass]="{'click-button' : isClicked}">{{ surgeon.buttonTitle }}</button>
+        <button (click)="AddSnap()" [ngClass]="{'click-button' : surgeon.isClicked}">{{ surgeon.buttonTitle }}</button>
         <span> snaps = {{ surgeon.snap }} </span>
     </div>
-    @if (intervention.nurse2) {
+    <h3>Interventions de {{ surgeon.name }} </h3>
+    @for(intervention of interventionTab; track intervention.id ) {
+        <p>title ={{intervention.name}}</p>
+        <p>anesthesiste ={{intervention.anesthesiste }}</p>
+        @if (intervention.nurse2) {
         <p> nurse2 = {{ intervention.nurse2 }}</p>
+        }
+        <div>*******</div>
     }
+<div>------------------------------------------------------------------------------</div>
 </div>

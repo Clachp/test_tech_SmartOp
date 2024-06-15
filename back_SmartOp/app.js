@@ -1,6 +1,5 @@
 require('dotenv').config();
 require('./database')
-const controller = require('./controller')
 const express = require('express');
 const routes = require('./router');
 
@@ -14,7 +13,5 @@ app.use((req, res, next) => {
 });
 
 app.use('/api/', routes);
-
-//controller.getSurgeonsIntervention('666c5dea4920b63a1acd8cb4')
 
 module.exports = app;
