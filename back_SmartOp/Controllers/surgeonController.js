@@ -1,73 +1,43 @@
 const express = require('express');
 const { Surgeon, Intervention } = require('../Models');
+const surgeonService = require('../Services/surgeonsServices');
+const mongoose = require('mongoose');
+const ObjectId = mongoose.Types.ObjectId;
 
-const GetFavoriteIntem = (item) => {
 
+exports.getAllSurgeons = async (req, res) => {
+  try {
+    const surgeons = await surgeonService.getAllSurgeons();
+    res.status(200).json(surgeons);
+  }
+  catch (error) {
+    res.status(404).json({
+      error: error.message
+    });
+  }
 }
 
-/**
- * Pour chaque surgeon
- * {
- *  surgeon:
- * speciality:
- * nr of interventions:
- * favortie nurse
- * favorite anesth
- * favorite intervnetion title}
- */
-
-exports.getSurgeonsIntervention = async (id) => {
-  const surgeon = await Surgeon.findById(id);
-  console.log("get surgeon: ", surgeon)
-  // for (intervention_id of surgeon.interventions) {
-  //   const res = Intervention.findById(intervention_id)
-  //   console.log("res : ", res)
-  // }
+exports.getOneSurgeon = async (req, res) => {
+  try {
+    const id = new ObjectId('666c787bac5a40b64cad6223');
+    const surgeons = await surgeonService.getSurgeonById(id)
+    res.status(200).json(surgeons);
+  }
+  catch (error) {
+    res.status(404).json({
+      error: error.message
+    });
+  }
 }
 
-exports.getAllSurgeons = async () => {
-  Surgeon.find({})
-  .then(
-    (Surgeon) => {
-      res.status(200).json(Surgeon);
-    })
-  .catch(
-    (error) => {
-      res.status(404).json({
-        error: error
-      });
-    }
-  );
-}
-
-const getSurgeonById = (req, res) => {
-    Surgeon.findOne({
-        _id: req.params.id
-      }).then(
-        (Surgeon) => {
-          res.status(200).json(Surgeon);
-        }
-      ).catch(
-        (error) => {
-          res.status(404).json({
-            error: error
-          });
-        }
-      );
-}
-
-const getSurgeonByName = (req, res) => {
-    Surgeon.findOne({
-        name: req.params.name
-      }).then(
-        (Surgeon) => {
-          res.status(200).json(Surgeon);
-        }
-      ).catch(
-        (error) => {
-          res.status(404).json({
-            error: error
-          });
-        }
-      );
+exports.getSurgeonByName = async (req, res) => {
+  try {
+    const surgeons = await surgeonService.getSurgeonByName(req.params.name)
+    res.status(200).json(surgeons);
+  }
+  catch(error) {
+    res.status(404).json({
+      error: error.message
+    });
+  }
 }

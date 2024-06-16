@@ -39,8 +39,10 @@ mongoose.connect(process.env.DB_ADDRESS, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
+.then(() => console.log('MongoDB connected...'))
+.catch(err => console.error('MongoDB connection error:', err));
 
-mongoose.connection.once('open', async () => {
+// mongoose.connection.once('open', async () => {
   // const existS = await Surgeon.exists();
   // if (!existS)
   //   await SeedTable(Surgeon, 'surgeons');
@@ -49,7 +51,7 @@ mongoose.connection.once('open', async () => {
   //   await SeedTable(Intervention, 'interventions');
   // if(!existS || !existI)
   //   await SetReferences();
-  console.log('Database configured');
-  mongoose.connection.close();
-});
+//   console.log('Database configured');
+//   mongoose.connection.close();
+// });
 
