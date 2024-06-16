@@ -3,11 +3,12 @@ import { SurgeonProfileComponent } from '../surgeon-profile/surgeon-profile.comp
 import { Surgeon } from '../models/surgeon';
 import { SurgeonsService } from '../Services/surgeons.service';
 import { Intervention } from '../models/intervention';
+import { NgClass, NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-surgeon-list',
   standalone: true,
-  imports: [SurgeonProfileComponent],
+  imports: [NgFor, NgClass, SurgeonProfileComponent],
   templateUrl: './surgeon-list.component.html',
   styleUrl: './surgeon-list.component.scss'
 })

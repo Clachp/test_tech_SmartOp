@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NgClass, NgStyle } from '@angular/common';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { RouterLink, RouterLinkActive, Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -10,17 +10,20 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
-  title!: string;
+  //title!: string;
   logo!: string;
   isClicked!: boolean;
 
+  constructor(private router: Router) {}
+
   ngOnInit(): void {
     this.isClicked = false;
-    this.title = "Smart'Op";
+    //this.title = "Smart'Op";
     this.logo = "https://smartop.io/smartop-logo.svg";
   }
 
   onClickSearch():void {
     this.isClicked = true;
+    this.router.navigateByUrl('surgeons/:id')
   }
 }

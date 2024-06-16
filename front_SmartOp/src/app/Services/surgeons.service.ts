@@ -28,20 +28,19 @@ export class SurgeonsService {
         return [...this.surgeons]
     }
 
-    getSurgeonById(surgeonId: number): Surgeon {
+    getSurgeonById(surgeonId: string): Surgeon {
         console.log(surgeonId)
+        console.log(`surgoeonId string ${surgeonId}; to int : ${+surgeonId}`);
         const found: Surgeon | undefined = this.surgeons.find(
-            (surg : Surgeon) => surg.id == surgeonId)
+            (surg : Surgeon) => surg.id == +surgeonId)
         if (!found)
             throw new Error('Surgeon not found');
         return found;
     }
 
     onSnap(snapInit: number, surgeonId: number):void {
-        const surgeon: Surgeon | undefined = this.surgeons.find(
-            (surg : Surgeon) => surg.id == surgeonId)
-        if (!surgeon)
-                throw new Error('Surgeon not found');
-        surgeon!.onClickSnap(snapInit);
+        console.log(`surgoeonId nubmer: ${surgeonId}; tostring : ${surgeonId.toString()}`);
+        const found = this.getSurgeonById(surgeonId.toString())
+        found!.onClickSnap(snapInit);
     }
 }

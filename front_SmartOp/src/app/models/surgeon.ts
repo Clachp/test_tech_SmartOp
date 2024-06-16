@@ -1,6 +1,7 @@
 export class Surgeon {
 
-    constructor(public id: number,
+    constructor(
+        public id: number,
         public name: string,
         public speciality: string,
         public snap: number,

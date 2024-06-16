@@ -1,8 +1,8 @@
 <div class="feature-container">
     <h2>{{ surgeon.name }}</h2>
     <p>Spécialité : {{ surgeon.speciality }} </p>
-    <button (click)="onView()">VIEW</button>
-    <!-- <div>
+    <!-- <button (click)="onView()">VIEW</button> -->
+    <div>
         <button (click)="AddSnap()" [ngClass]="{'click-button' : surgeon.isClicked}">{{ surgeon.buttonTitle }}</button>
         <span> snaps = {{ surgeon.snap }} </span>
     </div>
@@ -15,5 +15,5 @@
         }
         <div>*******</div>
     }
-<div>------------------------------------------------------------------------------</div> -->
+<div>------------------------------------------------------------------------------</div>
 </div>
