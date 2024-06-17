@@ -1,47 +1,44 @@
 class SurgeonResponse {
     constructor(
         name,
-        speciality,
-        interventions = [],
+        specialty,
         ) {
            this.name = name;
-           this.speciality = speciality;
-           this.interventions = interventions; 
+           this.specialty = specialty;
+           this.interventions = []; 
+           this.favoriteIntervention = null;
+           this.favoriteAnesthesiste = null;
+           this.favoriteNurse = null;
+           this.favoriteRoom = null;
         }
     
-    getName() {
-        return this.name;
-    }
+/** GETTERS */
+    getName() { return this.name; }
+    getSpecialty() { return this.specialty; }
+    getInterventions() { return this.interventions; }
+    getNumberOfInterventions() { return this.interventions.length(); }
+    getFavoriteIntervention() { return this.setFavoriteItem(title) }
+    getFavoriteAnesthesiste() { return this.favoriteAnesthesiste; }
+    getFavoriteRoom() { return this.setFavoriteItem(roomNumber); }
 
-    getSpeciality() {
-        return this.speciality;
-    }
-
+/** SETTERS */
     addIntervention(intervention) {
         this.interventions.push(intervention);
     }
 
-    getInterventions() {
-        return this.interventions;
-    }
-
-    getFavoriteItem(item) {
+    setFavoriteItem(item) {
         const frequencyMap = {};
-
-        this.interventions.forEach(obj => {
-            if (obj.hasOwnProperty(item)) {
-              const value = obj[item];
-              if (frequencyMap[value]) {
-                frequencyMap[value]++;
-              } else {
-                frequencyMap[value] = 1;
-              }
+        for (const inter of this.interventions) {
+            const value = inter[item];
+            if (frequencyMap[value]) {
+            frequencyMap[value]++;
+            } else {
+            frequencyMap[value] = 1;
             }
-          });
+        }
 
         let mostFreqValue = null;
         let maxCount = 0;
-
         for(const [value, count] of Object.entries(frequencyMap))
         {
             if (count > maxCount) {
@@ -52,16 +49,16 @@ class SurgeonResponse {
         return mostFreqValue;
     }
 
-    getFavoriteAnesthesiste() {
-       return this.getFavoriteItem(anesthesiste);
+    setFavoriteIntervention() {
+        this.favoriteAnesthesiste = this.setFavoriteItem('title');
+    }
+    setFavoriteAnesthesiste() {
+        this.favoriteAnesthesiste = this.setFavoriteItem('anesthesiste');
+    }
+    setFavoriteRoom() {
+        this.favoriteAnesthesiste = this.setFavoriteItem('roomNumber');
     }
 
-    // getFavoriteNurse() {
-    //     const isNurse1 = this.getFavoriteItem(nurse1);
-    //     const isNurse2 = this.getFavoriteItem(nurse2);
-
-
-    // }
 }
 
 module.exports = SurgeonResponse;

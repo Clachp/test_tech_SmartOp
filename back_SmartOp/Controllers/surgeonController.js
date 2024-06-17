@@ -19,8 +19,8 @@ exports.getAllSurgeons = async (req, res) => {
 
 exports.getOneSurgeon = async (req, res) => {
   try {
-    const id = new ObjectId('666c787bac5a40b64cad6223');
-    const surgeons = await surgeonService.getSurgeonById(id)
+    // const id = new ObjectId('666c787bac5a40b64cad6223');
+    const surgeons = await surgeonService.getSurgeonById(req.params.id)
     res.status(200).json(surgeons);
   }
   catch (error) {

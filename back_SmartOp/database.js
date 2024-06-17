@@ -19,7 +19,7 @@ const SetReferences = async () => {
   for (const intervention of interventions) {
       const surgeon = await Surgeon.findOne({
           name: intervention.surgeon,
-          speciality: intervention.speciality
+          specialty: intervention.specialty
       });
 
       if (surgeon) {

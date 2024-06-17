@@ -3,7 +3,7 @@ export class Surgeon {
     constructor(
         public id: number,
         public name: string,
-        public speciality: string,
+        public specialty: string,
         public snap: number,
         public buttonTitle: string,
         public isClicked: boolean,

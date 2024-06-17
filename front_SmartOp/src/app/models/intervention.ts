@@ -3,7 +3,7 @@ export class Intervention {
 
     constructor(public id: number,
         public name: string,
-        public speciality: string,
+        public specialty: string,
         public anesthesiste: string,
         public nurse1: string,
         public roomNumber: number

@@ -5,8 +5,8 @@ const { SurgeonController} = require('./Controllers')
 
 router.get('/', SurgeonController.getAllSurgeons);
 
-router.get('/{id}', SurgeonController.getOneSurgeon);
+router.get('/:id', SurgeonController.getOneSurgeon);
 
-router.get('/{name}', SurgeonController.getSurgeonByName);
+router.get('/name/:name', SurgeonController.getSurgeonByName);
 
 module.exports = router;

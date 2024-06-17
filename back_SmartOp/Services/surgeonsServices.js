@@ -9,7 +9,7 @@ exports.getAllSurgeons = async () => {
     }
     const surgeonTab = []
     for (const surgeon of surgeons) {
-        const response = new SurgeonResponse(surgeon.name, surgeon.speciality);
+        const response = new SurgeonResponse(surgeon.name, surgeon.specialty);
         for (const id of surgeon.interverventions) {
             const intervention = await Intervention.findById(id);
          if (!intervention)
@@ -22,12 +22,13 @@ exports.getAllSurgeons = async () => {
 }
 
 exports.getSurgeonById = async (id) => {
+    console.log("coucou")
     const surgeon = await Surgeon.findById(id)
     if (!surgeon) {
         console.log("erreur surgeon")
         throw new Error('surgeon not found by id')
     }
-    const response = new SurgeonResponse(surgeon.name, surgeon.speciality);
+    const response = new SurgeonResponse(surgeon.name, surgeon.specialty);
     for (const id of surgeon.interverventions) {
         const intervention = await Intervention.findById(id);
         if (!intervention)
@@ -39,21 +40,26 @@ exports.getSurgeonById = async (id) => {
 
 exports.getSurgeonByName = async (surgeonName) => {
     const surgeons = await Surgeon.find({ name: surgeonName })
-    if (!surgeons) {
-        console.log("erreur surgeon name")
-        throw new Error('surgeon not found by name')
-    }
+    if (!surgeons || surgeons.length === 0)      
+        throw new Error('surgeon not found by name');
+
     const surgeonTab = [];
-    for (surgeon of surgeons) {
-        const response = new SurgeonResponse(surgeon.name, surgeon.speciality);
+    for (const surgeon of surgeons) {
+        const surgeonResponse = new SurgeonResponse(surgeon.name, surgeon.specialty);
         for (const id of surgeon.interverventions) {
             const intervention = await Intervention.findById(id);
             if (!intervention)
                 throw new Error('intervention not found')
-            response.addIntervention(intervention);
+            surgeonResponse.addIntervention(intervention);
         }
-        surgeonTab.push(response);
+        surgeonResponse.setFavoriteAnesthesiste();
+        console.log(surgeonResponse.getFavoriteAnesthesiste());
+        surgeonTab.push(surgeonResponse);
     }
     return surgeonTab;
+}
+
+getSurgeonsFavoriteitems = async (response) => {
+
 }
 
