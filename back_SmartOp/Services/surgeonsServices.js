@@ -39,8 +39,8 @@ exports.getSurgeonById = async (id) => {
 }
 
 exports.getSurgeonByName = async (surgeonName) => {
-    const surgeons = await Surgeon.find({ name: surgeonName })
-    if (!surgeons || surgeons.length === 0)      
+    const surgeon = await Surgeon.find({ name: surgeonName })
+    if (!surgeon)      
         throw new Error('surgeon not found by name');
 
     const surgeonTab = [];
@@ -52,14 +52,24 @@ exports.getSurgeonByName = async (surgeonName) => {
                 throw new Error('intervention not found')
             surgeonResponse.addIntervention(intervention);
         }
+        surgeonResponse.setFavoriteIntervention();
         surgeonResponse.setFavoriteAnesthesiste();
-        console.log(surgeonResponse.getFavoriteAnesthesiste());
+        surgeonResponse.setFavoriteRoom();
         surgeonTab.push(surgeonResponse);
     }
     return surgeonTab;
 }
 
-getSurgeonsFavoriteitems = async (response) => {
 
-}
+
+// responseBuilder = async (surgeonTab) => {
+//     const tab = [];
+//     for (const elem of surgeonTab)
+//     {
+//         const obj = {
+//             name = elem.getName(),
+
+//         }
+//     }
+// }
 

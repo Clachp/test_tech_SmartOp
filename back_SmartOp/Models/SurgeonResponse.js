@@ -50,13 +50,13 @@ class SurgeonResponse {
     }
 
     setFavoriteIntervention() {
-        this.favoriteAnesthesiste = this.setFavoriteItem('title');
+        this.favoriteIntervention = this.setFavoriteItem('title');
     }
     setFavoriteAnesthesiste() {
         this.favoriteAnesthesiste = this.setFavoriteItem('anesthesiste');
     }
     setFavoriteRoom() {
-        this.favoriteAnesthesiste = this.setFavoriteItem('roomNumber');
+        this.favoriteRoom = this.setFavoriteItem('roomNumber');
     }
 
 }
