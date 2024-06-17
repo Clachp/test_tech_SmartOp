@@ -3,10 +3,8 @@ const router = express.Router();
 const { SurgeonController} = require('./Controllers')
 
 
-router.get('/', SurgeonController.getAllSurgeons);
-
+router.get('/surgeons', SurgeonController.getAllSurgeons);
 router.get('/:id', SurgeonController.getOneSurgeon);
-
-router.get('/name/:name', SurgeonController.getSurgeonByName);
+router.get('/surgeon/:name', SurgeonController.getSurgeonByName);
 
 module.exports = router;

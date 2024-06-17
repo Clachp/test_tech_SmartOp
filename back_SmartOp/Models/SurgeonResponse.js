@@ -6,6 +6,7 @@ class SurgeonResponse {
            this.name = name;
            this.specialty = specialty;
            this.interventions = []; 
+           this.numberOfInterventions = 0;
            this.favoriteIntervention = null;
            this.favoriteAnesthesiste = null;
            this.favoriteNurse = null;
@@ -16,10 +17,10 @@ class SurgeonResponse {
     getName() { return this.name; }
     getSpecialty() { return this.specialty; }
     getInterventions() { return this.interventions; }
-    getNumberOfInterventions() { return this.interventions.length(); }
-    getFavoriteIntervention() { return this.setFavoriteItem(title) }
+    getNumberOfInterventions() { return this.interventions.length; }
+    getFavoriteIntervention() { return this.favoriteIntervention; }
     getFavoriteAnesthesiste() { return this.favoriteAnesthesiste; }
-    getFavoriteRoom() { return this.setFavoriteItem(roomNumber); }
+    getFavoriteRoom() { return this.favoriteRoom; }
 
 /** SETTERS */
     addIntervention(intervention) {

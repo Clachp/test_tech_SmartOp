@@ -3,73 +3,67 @@ const { Surgeon, Intervention, SurgeonResponse } = require('../Models');
 
 
 exports.getAllSurgeons = async () => {
-    const surgeons = await Surgeon.find()
-    if (!surgeons) {
-        throw new Error('surgeons not found')
+    const foundSurgeons = await Surgeon.find({ });
+    if (!foundSurgeons || foundSurgeons.length === 0)      
+        throw new Error('surgeons not found');
+
+    const surgeonTab = [];
+    for (const surgeon of foundSurgeons) {
+        const surgeonResponse = new SurgeonResponse(surgeon.name, surgeon.specialty);
+        const surgeonObj = await responseBuilder(surgeonResponse, surgeon);
+        surgeonTab.push(surgeonObj);
     }
-    const surgeonTab = []
-    for (const surgeon of surgeons) {
-        const response = new SurgeonResponse(surgeon.name, surgeon.specialty);
-        for (const id of surgeon.interverventions) {
-            const intervention = await Intervention.findById(id);
-         if (!intervention)
-                throw new Error('intervention not found')
-            response.addIntervention(intervention);
-        }
-        surgeonTab.push(response);    
+    
+    return surgeonTab;
+}
+
+exports.getSurgeonByName = async (surgeonName) => {
+
+    const foundSurgeons = await Surgeon.find({ name: surgeonName })
+    if (!foundSurgeons || foundSurgeons.length === 0)      
+        throw new Error('surgeon not found by name');
+
+    const surgeonTab = [];
+    for (const surgeon of foundSurgeons) {
+        const surgeonResponse = new SurgeonResponse(surgeon.name, surgeon.specialty);
+        const surgeonObj = await responseBuilder(surgeonResponse, surgeon);
+        console.log("spé: ", surgeonObj.specialty);
+        surgeonTab.push(surgeonObj);
     }
+
     return surgeonTab;
 }
 
 exports.getSurgeonById = async (id) => {
-    console.log("coucou")
     const surgeon = await Surgeon.findById(id)
-    if (!surgeon) {
-        console.log("erreur surgeon")
+    if (!surgeon) 
         throw new Error('surgeon not found by id')
-    }
-    const response = new SurgeonResponse(surgeon.name, surgeon.specialty);
-    for (const id of surgeon.interverventions) {
+
+    const responseClass = new SurgeonResponse(surgeon.name, surgeon.specialty);
+    const responseObj = await responseBuilder(responseClass, surgeon);
+
+    return responseObj;
+}
+
+responseBuilder = async (surgeonResponse, foundSurgeon) => {
+    for (const id of foundSurgeon.interverventions) {
         const intervention = await Intervention.findById(id);
         if (!intervention)
             throw new Error('intervention not found')
-        response.addIntervention(intervention);
+        surgeonResponse.addIntervention(intervention);
     }
-    return response;
-}
-
-exports.getSurgeonByName = async (surgeonName) => {
-    const surgeon = await Surgeon.find({ name: surgeonName })
-    if (!surgeon)      
-        throw new Error('surgeon not found by name');
-
-    const surgeonTab = [];
-    for (const surgeon of surgeons) {
-        const surgeonResponse = new SurgeonResponse(surgeon.name, surgeon.specialty);
-        for (const id of surgeon.interverventions) {
-            const intervention = await Intervention.findById(id);
-            if (!intervention)
-                throw new Error('intervention not found')
-            surgeonResponse.addIntervention(intervention);
-        }
-        surgeonResponse.setFavoriteIntervention();
-        surgeonResponse.setFavoriteAnesthesiste();
-        surgeonResponse.setFavoriteRoom();
-        surgeonTab.push(surgeonResponse);
+    surgeonResponse.setFavoriteIntervention();
+    surgeonResponse.setFavoriteAnesthesiste();
+    surgeonResponse.setFavoriteRoom();
+    const obj = {
+        name: surgeonResponse.getName(),
+        specialty: surgeonResponse.getSpecialty(),
+        numberOfInterventions : surgeonResponse.getNumberOfInterventions(),
+        favoriteIntervention: surgeonResponse.getFavoriteIntervention(),
+        favoriteAnesthesiste: surgeonResponse.getFavoriteAnesthesiste(),
+        favoriteNurse: "",
+        favoriteRoom: surgeonResponse.getFavoriteRoom(),
     }
-    return surgeonTab;
+    return obj;
 }
-
-
-
-// responseBuilder = async (surgeonTab) => {
-//     const tab = [];
-//     for (const elem of surgeonTab)
-//     {
-//         const obj = {
-//             name = elem.getName(),
-
-//         }
-//     }
-// }
 
