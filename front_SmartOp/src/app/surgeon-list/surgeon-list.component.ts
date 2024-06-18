@@ -4,20 +4,19 @@ import { Surgeon } from '../models/surgeon';
 import { SurgeonsService } from '../Services/surgeons.service';
 import { Intervention } from '../models/intervention';
 import { NgClass, NgFor } from '@angular/common';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-surgeon-list',
-  standalone: true,
-  imports: [NgFor, NgClass, SurgeonProfileComponent],
   templateUrl: './surgeon-list.component.html',
   styleUrl: './surgeon-list.component.scss'
 })
 export class SurgeonListComponent implements OnInit {
-  surgeonTab!: Surgeon[];
+  surgeons$!: Observable<Surgeon[]>
   
   constructor(private surgeonsService: SurgeonsService) {}
 
   ngOnInit(): void {
-   this.surgeonTab = this.surgeonsService.getSurgeons();
+    this.surgeons$ = this.surgeonsService.getAllSurgeons();
   }
 }

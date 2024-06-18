@@ -2,9 +2,12 @@
     <div class="menu-logo">
         <a routerLink="" routerLinkActive="active"><img [src]="logo" alt="logo"></a>
     </div>
-    <div class="search-button">
-        <input type="text" placeholder="Search a surgeon..." class="search-input">
-        <button (click)="onClickSearch()" [ngClass]="{'click-button' : isClicked}">search</button>
-        <button routerLink="surgeons/:id">search</button>
-    </div>
+    <form #searchSurgeonForm="ngForm" (ngSubmit)="onSubmit(searchSurgeonForm)" class="search-form">
+        <input type="text" 
+        placeholder="Search a surgeon..." 
+        class="search-input"
+        [(ngModel)]="surgeonName"
+        name="surgeonName">
+        <button type="submit" [ngClass]="{'click-button' : isClicked}">search</button>
+    </form>
 </div>

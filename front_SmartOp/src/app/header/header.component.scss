@@ -27,32 +27,19 @@
     height: 31px;
 }
 
-button {
+.search-form {
+    margin-left: auto; 
+    padding: 5px;
+}
+
+.search-input { 
     border: 1px solid #127eb4;
     border-radius: 3px;
-    color: #37aeeb;
     font-family: Inter;
     font-size: 14px;
     font-style: normal;
-    font-weight: 600;
     line-height: 100%;
     margin-right: 14px;
-    padding: 10px 10px;
-    text-decoration: none;
-}
-
-.click-button {
-    background: #37aeeb;
-    border-radius: 3px;
-    color: #fff;
-    font-family: Inter;
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 100%;
-    padding: 13px 16px;
-    text-decoration: none;
-}
-
-.search-button {
-    margin-left: auto; 
+    padding: 5px 5px;
+    max-width: 150px;
 }

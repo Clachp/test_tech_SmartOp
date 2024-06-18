@@ -1,1 +1,16 @@
-# test_tech_SmartOp
+# Smart'Op technical test
+
+
+## Prerequisites
+
+
+## Install
+
+
+## Build
+
+
+## Contact
+
+## Links
+

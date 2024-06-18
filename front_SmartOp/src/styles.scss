@@ -31,16 +31,17 @@ button {
     margin-right: 14px;
     padding: 10px 10px;
     text-decoration: none;
+    cursor: pointer;
 }
 
 .click-button {
-    background: #37aeeb;
+    background: #37aeeb !important;
     border-radius: 3px;
     color: #fff;
     font-family: Inter;
     font-size: 14px;
     font-weight: 600;
     line-height: 100%;
-    padding: 13px 16px;
+    padding: 10px 10px;
     text-decoration: none;
 }

@@ -7,8 +7,6 @@ import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from '@angular/r
 
 @Component({
   selector: 'app-surgeon-profile',
-  standalone: true,
-  imports: [NgClass, RouterLink, RouterLinkActive],
   templateUrl: './surgeon-profile.component.html',
   styleUrl: './surgeon-profile.component.scss'
 })
@@ -24,9 +22,9 @@ export class SurgeonProfileComponent implements OnInit{
     console.log("Init surgeon-profile : ", this.surgeon)
   }
 
-  AddSnap(): void {
-    this.surgeonsService.onSnap(this.surgeon.snap, this.surgeon.id)
-  }  
+  // AddSnap(): void {
+  //   this.surgeonsService.onSnap(this.surgeon.snap, this.surgeon.id)
+  // }  
 
   // private getSurgeon(surgeonId: number): void {
   //  // const surgeonId = this.route.snapshot.params['id'];
@@ -35,8 +33,8 @@ export class SurgeonProfileComponent implements OnInit{
   // }
 
   onView() {
-    console.log("view id: ", this.surgeon.id)
-    this.router.navigateByUrl(`surgeons/${this.surgeon.id}`);
+    console.log("view id: ", this.surgeon.name)
+    this.router.navigateByUrl(`surgeons/${this.surgeon.name}`);
    // this.router.navigate(['/surgeons', this.surgeon.id]);
   }
   

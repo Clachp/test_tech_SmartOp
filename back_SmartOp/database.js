@@ -43,14 +43,14 @@ mongoose.connect(process.env.DB_ADDRESS, {
 .catch(err => console.error('MongoDB connection error:', err));
 
 // mongoose.connection.once('open', async () => {
-  // const existS = await Surgeon.exists();
-  // if (!existS)
-  //   await SeedTable(Surgeon, 'surgeons');
-  // const existI = await Intervention.exists();
-  // if (!existI)
-  //   await SeedTable(Intervention, 'interventions');
-  // if(!existS || !existI)
-  //   await SetReferences();
+//   const existS = await Surgeon.exists();
+//   if (!existS)
+//     await SeedTable(Surgeon, 'surgeons');
+//   const existI = await Intervention.exists();
+//   if (!existI)
+//     await SeedTable(Intervention, 'interventions');
+//   if(!existS || !existI)
+//     await SetReferences();
 //   console.log('Database configured');
 //   mongoose.connection.close();
 // });

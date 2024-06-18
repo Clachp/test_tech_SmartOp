@@ -8,7 +8,7 @@ import { SingleSurgeonComponent } from './single-surgeon/single-surgeon.componen
 export const routes: Routes = [
     { path: '', component: LandingPageComponent},
     { path: 'surgeons', component: SurgeonListComponent },
-    { path: 'surgeons/:id', component: SingleSurgeonComponent }
+    { path: 'surgeons/:name', component: SingleSurgeonComponent }
 ];
 
 @NgModule({
