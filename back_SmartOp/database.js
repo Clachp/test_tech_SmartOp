@@ -35,7 +35,7 @@ const SetReferences = async () => {
   }
 }
 
-mongoose.connect(process.env.DB_ADDRESS, {
+mongoose.connect(process.env.DB_CONNECTION, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
