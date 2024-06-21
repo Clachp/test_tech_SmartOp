@@ -5,6 +5,9 @@ import { SurgeonsService } from '../Services/surgeons.service';
 import { Intervention } from '../models/intervention';
 import { NgClass, NgFor } from '@angular/common';
 import { Observable } from 'rxjs';
+import { ColDef } from 'ag-grid-community'; 
+import 'ag-grid-community/styles/ag-grid.css';
+import 'ag-grid-community/styles/ag-theme-quartz.css';
 
 @Component({
   selector: 'app-surgeon-list',
@@ -13,10 +16,35 @@ import { Observable } from 'rxjs';
 })
 export class SurgeonListComponent implements OnInit {
   surgeons$!: Observable<Surgeon[]>
+
+  colDefs: ColDef[] = [
+    { field: "name" },
+    { field: "specialty" },
+    { field: "numberOfInterventions" },
+    { field: "favoriteAnesthesiste" },
+    { field: "favoriteNurse" },
+    { field: "favoriteRoom" },
+    { field: "favoriteIntervention" }
+  ];
+
+  rowData: object[] = [
+    {name: "GHUIN",
+    specialty: "Ophtalmologie",
+    numberOfInterventions: 2,
+    favoriteAnesthesiste: "MARCADAL",
+    favoriteNurse: "Marceline",
+    favoriteRoom: "8",
+    favoriteIntervention: "ECTROPION Droit"},
+  ];
+
+
+
   
   constructor(private surgeonsService: SurgeonsService) {}
 
   ngOnInit(): void {
     this.surgeons$ = this.surgeonsService.getAllSurgeons();
+
+  console.log("col def : ", this.colDefs);
   }
 }

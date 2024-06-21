@@ -61,7 +61,7 @@ responseBuilder = async (surgeonResponse, foundSurgeon) => {
         numberOfInterventions : surgeonResponse.getNumberOfInterventions(),
         favoriteIntervention: surgeonResponse.getFavoriteIntervention(),
         favoriteAnesthesiste: surgeonResponse.getFavoriteAnesthesiste(),
-        favoriteNurse: "",
+        favoriteNurse: "Marceline",
         favoriteRoom: surgeonResponse.getFavoriteRoom(),
     }
     return obj;

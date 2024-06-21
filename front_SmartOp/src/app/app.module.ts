@@ -6,6 +6,11 @@ import * as fr from '@angular/common/locales/fr';
 import { FormsModule } from '@angular/forms';
 import { provideHttpClient } from '@angular/common/http';
 
+import { AgGridAngular } from 'ag-grid-angular';
+import { ColDef } from 'ag-grid-community'; 
+import 'ag-grid-community/styles/ag-grid.css';
+import 'ag-grid-community/styles/ag-theme-quartz.css';
+
 import { AppRoutingModule } from './app.routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -27,6 +32,7 @@ import { SingleSurgeonComponent } from './single-surgeon/single-surgeon.componen
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    AgGridAngular,
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'fr-FR' },
