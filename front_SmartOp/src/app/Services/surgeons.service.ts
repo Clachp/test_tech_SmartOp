@@ -19,10 +19,4 @@ export class SurgeonsService {
     getSurgeonByName(surgeonName: string): Observable<Surgeon[]> {
         return this.http.get<Surgeon[]>(`http://localhost:3300/api/surgeon/${surgeonName}`)
     }
-
-    onSnap(snapInit: number, surgeonId: number):void {
-        console.log(`surgoeonId nubmer: ${surgeonId}; tostring : ${surgeonId.toString()}`);
-        // const found = this.getSurgeonById(surgeonId.toString())
-        // found!.onClickSnap(snapInit);
-    }
 }

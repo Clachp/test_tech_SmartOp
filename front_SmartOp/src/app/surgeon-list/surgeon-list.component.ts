@@ -4,7 +4,7 @@ import { Surgeon } from '../models/surgeon';
 import { SurgeonsService } from '../Services/surgeons.service';
 import { Intervention } from '../models/intervention';
 import { NgClass, NgFor } from '@angular/common';
-import { Observable, tap } from 'rxjs';
+import { Observable, tap, BehaviorSubject } from 'rxjs';
 import { ColDef } from 'ag-grid-community'; 
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-quartz.css';
@@ -27,7 +27,7 @@ export class SurgeonListComponent implements OnInit {
     { field: "favoriteIntervention" }
   ];
 
-  rowData: object[] = [
+  rowDataSub = new BehaviorSubject<object[]>([
     {name: "GHUIN",
     specialty: "Ophtalmologie",
     numberOfInterventions: 2,
@@ -35,15 +35,20 @@ export class SurgeonListComponent implements OnInit {
     favoriteNurse: "Marceline",
     favoriteRoom: "8",
     favoriteIntervention: "ECTROPION Droit"},
-  ];
+  ]);
+  rowData$ = this.rowDataSub.asObservable();
 
   constructor(private surgeonsService: SurgeonsService) {}
 
   ngOnInit(): void {
     this.surgeons$ = this.surgeonsService.getAllSurgeons().pipe(
       tap((surgeons: Surgeon[]) => {
-        this.rowData.push(...surgeons);
+        const currentData = this.rowDataSub.value;
+        this.rowDataSub.next([...currentData, ...surgeons]);
+        console.log(surgeons);
       })
+      
     );
+    this.surgeons$.subscribe();
   }
 }

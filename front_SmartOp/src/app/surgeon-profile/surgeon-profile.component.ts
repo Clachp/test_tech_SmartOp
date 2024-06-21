@@ -33,7 +33,6 @@ export class SurgeonProfileComponent implements OnInit{
   } 
 
   onView() {
-    console.log("view id: ", this.surgeon.name)
     this.router.navigateByUrl(`surgeons/${this.surgeon.name}`);
   }
   
