@@ -4,7 +4,7 @@ import { Surgeon } from '../models/surgeon';
 import { SurgeonsService } from '../Services/surgeons.service';
 import { Intervention } from '../models/intervention';
 import { NgClass, NgFor } from '@angular/common';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { ColDef } from 'ag-grid-community'; 
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-quartz.css';
@@ -37,14 +37,13 @@ export class SurgeonListComponent implements OnInit {
     favoriteIntervention: "ECTROPION Droit"},
   ];
 
-
-
-  
   constructor(private surgeonsService: SurgeonsService) {}
 
   ngOnInit(): void {
-    this.surgeons$ = this.surgeonsService.getAllSurgeons();
-
-  console.log("col def : ", this.colDefs);
+    this.surgeons$ = this.surgeonsService.getAllSurgeons().pipe(
+      tap((surgeons: Surgeon[]) => {
+        this.rowData.push(...surgeons);
+      })
+    );
   }
 }

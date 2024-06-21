@@ -29,7 +29,6 @@ export class SurgeonProfileComponent implements OnInit{
   ngOnInit(): void {
     // this.properties = Object.entries(this.surgeon);
     this.rowObj = this.surgeon;
-    console.log(this.rowObj);
     this.rowData.push(this.rowObj);
   } 
 

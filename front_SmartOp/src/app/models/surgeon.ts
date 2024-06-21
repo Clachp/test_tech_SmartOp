@@ -4,7 +4,11 @@ export class Surgeon {
         public id: number,
         public name: string,
         public specialty: string,
-        public isClicked: boolean,
+        public numberOfInterventions: number,
+        public favoriteAnesthesiste: string,
+        public favoriteNurse: string,
+        public favoriteRoom: string,
+        public favoriteIntervention: string,
     ) {}
 
 }
