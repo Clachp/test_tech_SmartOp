@@ -1,8 +1,8 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
-import { Surgeon } from '../models/surgeon';
-import { Intervention } from '../models/intervention';
+import { Surgeon } from '../../core/models/surgeon';
+import { Intervention } from '../../core/models/intervention';
 import { NgClass, NgStyle } from '@angular/common';
-import { InterventionsService, SurgeonsService } from '../Services';
+import { InterventionsService, SurgeonsService } from '../../core/services';
 import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AgGridAngular } from 'ag-grid-angular';
 import { ColDef } from 'ag-grid-community'; 

@@ -1,0 +1,35 @@
+<div class="feature-container" *ngIf="surgeon$ | async as surgeons ; else surgeonReplace">
+    <div *ngFor="let surgeon of surgeons">
+    <h2>{{ surgeon.name }}</h2>
+    <p>Spécialité : {{ surgeon.specialty }} </p>
+
+    <h3>Interventions de {{ surgeon.name }} </h3>
+    @for(intervention of interventionTab; track intervention.id ) {
+        <p>title ={{intervention.name}}</p>
+        <p>anesthesiste ={{intervention.anesthesiste }}</p>
+        @if (intervention.nurse2) {
+        <p> nurse2 = {{ intervention.nurse2 }}</p>
+        }
+        <div>*******</div>
+    }
+    <div>------------------------------------------------------------------------------</div>
+    </div>
+</div>
+
+<ng-template #surgeonReplace>
+    <div class="feature-container">
+    <h2>{{ defaultSurgeon.name }}</h2>
+    <p>Spécialité : {{ defaultSurgeon.specialty }} </p>
+    <h3>Interventions de {{ defaultSurgeon.name }} </h3>
+    @for(intervention of interventionTab; track intervention.id ) {
+        <p>title ={{intervention.name}}</p>
+        <p>anesthesiste ={{intervention.anesthesiste }}</p>
+        @if (intervention.nurse2) {
+        <p> nurse2 = {{ intervention.nurse2 }}</p>
+        }
+        <div>*******</div>
+    }
+    <div>------------------------------------------------------------------------------</div>
+   
+    </div>
+</ng-template>

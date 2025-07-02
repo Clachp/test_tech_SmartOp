@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { SurgeonProfileComponent } from '../surgeon-profile/surgeon-profile.component';
-import { Surgeon } from '../models/surgeon';
-import { SurgeonsService } from '../Services/surgeons.service';
-import { Intervention } from '../models/intervention';
+import { Surgeon } from '../../core/models/surgeon';
+import { SurgeonsService } from '../../core/services/surgeons.service';
+import { Intervention } from '../../core/models/intervention';
 import { NgClass, NgFor } from '@angular/common';
-import { Observable, tap, BehaviorSubject } from 'rxjs';
+import { Observable, tap, BehaviorSubject, Subject } from 'rxjs';
 import { ColDef } from 'ag-grid-community'; 
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-quartz.css';
@@ -27,16 +27,8 @@ export class SurgeonListComponent implements OnInit {
     { field: "favoriteIntervention" }
   ];
 
-  rowDataSub = new BehaviorSubject<object[]>([
-    {name: "GHUIN",
-    specialty: "Ophtalmologie",
-    numberOfInterventions: 2,
-    favoriteAnesthesiste: "MARCADAL",
-    favoriteNurse: "Marceline",
-    favoriteRoom: "8",
-    favoriteIntervention: "ECTROPION Droit"},
-  ]);
-  rowData$ = this.rowDataSub.asObservable();
+  rowData$ = this.surgeonsService.rowDataSub.asObservable();
+  rowDataSub = this.surgeonsService.rowDataSub;
 
   constructor(private surgeonsService: SurgeonsService) {}
 
@@ -46,9 +38,12 @@ export class SurgeonListComponent implements OnInit {
         const currentData = this.rowDataSub.value;
         this.rowDataSub.next([...currentData, ...surgeons]);
         console.log(surgeons);
+        this.surgeonsService.surgeonSub.next(surgeons[0]);
       })
       
     );
-    this.surgeons$.subscribe();
+    // this.surgeons$.subscribe();
+
+    
   }
 }

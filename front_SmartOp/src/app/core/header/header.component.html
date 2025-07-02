@@ -1,0 +1,10 @@
+<div class="section master-first-content spartan ls-half">
+    <div class="menu-logo">
+        <a routerLink="" routerLinkActive="active"><img :src="https://smartop.io/smartop-logo.svg" alt="smartop logo"></a>
+    </div>
+    <form (ngSubmit)="onSubmit()" class="search-form">
+        <input id="surgeonName" type="text" [formControl]="surgeonName" 
+            placeholder="Search a surgeon..." class="search-input">
+        <button type="submit" [disabled]="surgeonName.invalid">search</button>
+    </form>
+</div>
